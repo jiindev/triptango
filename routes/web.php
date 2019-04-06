@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Cache;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,4 +15,12 @@
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+// Route::get('/cache', function(){
+//     return Cache::get('key');
+// });
+
+Route::group(['middleware' => ['web']], function(){
+    Route::resource('orders','OrderController');
 });
